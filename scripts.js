@@ -95,11 +95,24 @@ function addLetter(letter) {
 
 // TODO: Implement deleteLetter function  
 function deleteLetter() {
+    if (currentTile <= 0){
+        logDebug("⚠️ Row is Empty! Press Enter a letter to delete.", 'warning');
+        return;
+    }
+    currentTile--;
+    const currentRowElement = rows[currentRow];
+    const tiles = currentRowElement.querySelectorAll(".tile");
+    const tileToDelete = tiles[currentTile];
+    const letterBeingDeleted = tileToDelete.textContent;
+
+    tileToDelete.textContent = "";
+    tileToDelete.classList.remove("filled");
+    logDebug(`Deleted letter: ${letterBeingDeleted} from position ${currentTile}`, 'info');
 }
 
 // TODO: Implement submitGuess function
 // function submitGuess() {
-//     // Your code here!
+//     // Your code hre!
 // }
 
 // TODO: Implement checkGuess function (the hardest part!)
@@ -107,4 +120,4 @@ function deleteLetter() {
 //     // Your code here!
 //     // Remember: handle duplicate letters correctly
 //     // Return the result array
-// }
+// }e
